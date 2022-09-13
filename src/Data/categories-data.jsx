@@ -4,8 +4,7 @@ import men from "../Assets/images/mens.jpeg"
 import women from "../Assets/images/womens.jpeg"
 import jackets from "../Assets/images/jackets.jpeg"
 
-
-const section = [
+const categories = [
   {
     title: "hats",
     imageUrl: hat,
@@ -39,5 +38,4 @@ const section = [
     linkUrl: "shop/men",
   },
 ]
-
-export default section
+export default categories
