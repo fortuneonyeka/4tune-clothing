@@ -1,9 +1,4 @@
 {
-  "sass.andStared": [
-  
-    "active",
-    "focus",
-    "hover",
-    "nth-child"
-  ]
+  "sass.andStared": ["active", "focus", "hover", "nth-child"],
+  "cSpell.enableFiletypes": ["css.erb", "erb", "jsx-tags", "sass", "sql"]
 }
