@@ -25,7 +25,7 @@ const Navigation = () => {
           <Link className="nav-link" to="/contact" style={{marginRight:"50px", fontSize:"25px"}}>
             Contact
           </Link>
-          <Link className="nav-link" to="/login" style={{marginRight:"50px", fontSize:"25px"}}>
+          <Link className="nav-link" to="/sign-in" style={{marginRight:"50px", fontSize:"25px"}}>
             Sign In
           </Link>
         </div>
