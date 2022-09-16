@@ -26,7 +26,7 @@ const Navigation = () => {
             Contact
           </Link>
           <Link className="nav-link" to="/sign-in" style={{marginRight:"50px", fontSize:"25px"}}>
-            Sign In
+            SignIn
           </Link>
         </div>
       </div>

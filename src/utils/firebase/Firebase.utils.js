@@ -1,14 +1,15 @@
 import { initializeApp } from "firebase/app"
 import {getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider,} from "firebase/auth"
+import {getFirestore, doc, getDoc, setDoc, } from "firebase/firestore"
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC120w1k0WLbBu8oKAxjk1xRQz40l-sITA",
-  authDomain: "tune-clothing.firebaseapp.com",
-  projectId: "tune-clothing",
-  storageBucket: "tune-clothing.appspot.com",
-  messagingSenderId: "294108505186",
-  appId: "1:294108505186:web:13fc7e50a89794e4619d3b"
+  apiKey: "AIzaSyAK1TqvITKdj9DsnmMdqVPA8z_hzm4-Xac",
+  authDomain: "tun-clothings.firebaseapp.com",
+  projectId: "tun-clothings",
+  storageBucket: "tun-clothings.appspot.com",
+  messagingSenderId: "703322152757",
+  appId: "1:703322152757:web:24b41aab159a2ad500f67c"
 };
 
 
@@ -21,3 +22,34 @@ provider.setCustomParameters({
 
 export const auth =  getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
+
+export const db = getFirestore()
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, 'users', userAuth.user.uid);
+ 
+
+  const userSnapshot = await getDoc(userDocRef);
+
+
+  //if user data does not exists
+  //create / set the document with the data from userAuth in my collection
+
+  //if user exists
+  //return user
+
+  if (!userSnapshot.exists()) {
+    const {displayName, email } = userAuth.user;
+    const createdAt = new Date()
+
+    try {
+      await setDoc(userDocRef, {
+        displayName, email, createdAt
+      })
+    } catch (error) {
+      console.log("error creating this user", error.message);
+    }
+  }
+
+  return userDocRef
+}
