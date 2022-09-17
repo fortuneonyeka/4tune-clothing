@@ -3,6 +3,7 @@ import {signInWithGooglePopup, createUserDocumentFromAuth} from "../../utils/fir
 // import { getRedirectResult } from "firebase/auth"
 // import {signInWithGoogleRedirect, auth} from "../../utils/firebase/Firebase.utils"
 import SignUpForm from "../../Components/sign-up-form/SignUpForm"
+import { Helmet } from "react-helmet-async"
 
 
 
@@ -32,6 +33,14 @@ const SignIn = () => {
     
   return (
     <Fragment>
+      
+      <Helmet>
+        <title>Login</title>
+        <meta name="description" content="User Login page."/>
+        <link rel="canonical" href="/sign-in" />
+        {/* Disallowing google robot to crawl this page. */}
+        <meta name="robots" content="noindex"/>
+      </Helmet>
       <div>
         <h3>Sign In</h3>
         <button onClick={logGoogleUser}>Sign in with Google Popup</button>
