@@ -1,17 +1,21 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import {signInWithGooglePopup, createUserDocumentFromAuth} from "../../utils/firebase/Firebase.utils"
 // import { getRedirectResult } from "firebase/auth"
 // import {signInWithGoogleRedirect, auth} from "../../utils/firebase/Firebase.utils"
+import SignUpForm from "../../Components/sign-up-form/SignUpForm"
+
 
 
 const SignIn = () => {
-  
+
+ 
+
   const logGoogleUser =  async () => {
     const {user} = await signInWithGooglePopup()
      createUserDocumentFromAuth(user)
 
   }
-  
+
   // useEffect( () => {
   //   async function signInWithRedirect() {
   //     const response = await getRedirectResult(auth)
@@ -32,7 +36,7 @@ const SignIn = () => {
         <h3>Sign In</h3>
         <button onClick={logGoogleUser}>Sign in with Google Popup</button>
         {/* <button onClick={signInWithGoogleRedirect}>Sign in with Google Redirect</button> */}
-        <p>{}</p>
+        <SignUpForm />
       </div>
     </Fragment>
   )
