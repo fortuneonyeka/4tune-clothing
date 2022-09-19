@@ -4,6 +4,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/Firebase.utils";
+import "./sign-up-form-styles.scss"
 
 const defaultFormFields = {
   displayName: "",
@@ -50,47 +51,59 @@ const SignUpForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
   return (
-    <div>
-      <h1>Sign Up With Your Email And Password</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign Up With Your Email And Password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
         label="Display Name"
-          required
-          type="text"
-          onChange={handleChange}
-          name="displayName"
-          value={displayName}
+        inputOptions={{required:true,
+          type:"text",
+          onChange:handleChange,
+          name:"displayName",
+          value:displayName
+        }}
+          
         />
 
         
         <FormInput
          label="Email"
-          required
-          type="email"
-          onChange={handleChange}
-          name="email"
-          value={email}
+         inputOptions={{
+          required:true,
+          type:"email",
+          onChange:handleChange,
+          name:"email",
+          value:email,
+         }}
+          
         />
 
        
         <FormInput
          label="Password"
-          required
-          type="password"
-          minLength={6}
-          onChange={handleChange}
-          name="password"
-          value={password}
+         inputOptions={{
+          required: true,
+          type:"password",
+          minLength:6,
+          onChange:handleChange,
+          name:"password",
+          value:password,
+         }}
+          
         />
 
         <FormInput
          label="Confirm Password"
-          required
-          type="password"
-          minLength={6}
-          onChange={handleChange}
-          name="confirmPassword"
-          value={confirmPassword}
+         inputOptions={{
+          required:true,
+          type:"password",
+          minLength:6,
+          onChange:handleChange,
+          name:"confirmPassword",
+          value:confirmPassword,
+         }}
+          
         />
 
         <button type="submit">Create Account</button>
