@@ -5,6 +5,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/Firebase.utils";
 import "./sign-up-form-styles.scss"
+import Button from "../button/Button";
 
 const defaultFormFields = {
   displayName: "",
@@ -105,8 +106,8 @@ const SignUpForm = () => {
          }}
           
         />
-
-        <button type="submit">Create Account</button>
+      
+        <Button buttonType="inverted" type="submit">Create Account</Button>
       </form>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import {signInWithGooglePopup, createUserDocumentFromAuth} from "../../utils/firebase/Firebase.utils"
+import Button from "../../Components/button/Button"
 // import { getRedirectResult } from "firebase/auth"
 // import {signInWithGoogleRedirect, auth} from "../../utils/firebase/Firebase.utils"
 import SignUpForm from "../../Components/sign-up-form/SignUpForm"
@@ -43,7 +44,7 @@ const SignIn = () => {
       </Helmet>
       <div>
         <h3>Sign In</h3>
-        <button onClick={logGoogleUser}>Sign in with Google Popup</button>
+        <Button buttonType="google" onClick={logGoogleUser}>Sign in with Google</Button>
         {/* <button onClick={signInWithGoogleRedirect}>Sign in with Google Redirect</button> */}
         <SignUpForm />
       </div>
