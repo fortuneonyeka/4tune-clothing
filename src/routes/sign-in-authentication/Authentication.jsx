@@ -1,22 +1,19 @@
-import React, { Fragment, useState } from 'react'
+import React, {  useState } from 'react'
+// import FormInput from "../../Components/form-inputs/Form-input"
 import {signInWithGooglePopup, createUserDocumentFromAuth} from "../../utils/firebase/Firebase.utils"
-import Button from "../../Components/button/Button"
+
 // import { getRedirectResult } from "firebase/auth"
 // import {signInWithGoogleRedirect, auth} from "../../utils/firebase/Firebase.utils"
 import SignUpForm from "../../Components/sign-up-form/SignUpForm"
 import { Helmet } from "react-helmet-async"
 
+import SignInForm from "../../Components/sign-in/SignInForm"
 
 
-const SignIn = () => {
 
- 
 
-  const logGoogleUser =  async () => {
-    const {user} = await signInWithGooglePopup()
-     createUserDocumentFromAuth(user)
+const Authentication = () => {
 
-  }
 
   // useEffect( () => {
   //   async function signInWithRedirect() {
@@ -33,23 +30,18 @@ const SignIn = () => {
     
     
   return (
-    <Fragment>
+    <div className="">
       
       <Helmet>
         <title>Login</title>
         <meta name="description" content="User Login page."/>
         <link rel="canonical" href="/sign-in" />
-        {/* Disallowing google robot to crawl this page. */}
-        <meta name="robots" content="noindex"/>
       </Helmet>
-      <div>
-        <h3>Sign In</h3>
-        <Button buttonType="google" onClick={logGoogleUser}>Sign in with Google</Button>
-        {/* <button onClick={signInWithGoogleRedirect}>Sign in with Google Redirect</button> */}
-        <SignUpForm />
-      </div>
-    </Fragment>
+     <SignInForm />
+     <SignUpForm />
+    </div>
   )
 }
 
-export default SignIn
+
+export default Authentication
