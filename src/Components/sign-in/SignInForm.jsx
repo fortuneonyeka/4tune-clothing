@@ -31,7 +31,22 @@ const SignInForm = () => {
      console.log(response);
       resetFormField();
     } catch (error) {
-      
+      switch(error.code){
+        case "auth/wrong-password":
+          alert("Incorrect Password");
+          break;
+
+        case "auth/user-not-found":
+          alert("No user associated with this email")
+          break;
+        default :
+        alert(error);
+      }
+      // if (error.code === "auth/wrong-password") {
+      //   alert("You entered wrong password")
+      // }else if(error.code === "auth/user-not-found") {
+      //   alert("User not found")
+      // }
     }
   };
 
@@ -50,7 +65,7 @@ const SignInForm = () => {
     <div className="sign-up-container">
       <h2>Already have an account?</h2>
       <span>Sign In With Your Email And Password</span>
-      
+
       <form onSubmit={handleSubmit}>
         <FormInput
          label="Email"
@@ -79,7 +94,7 @@ const SignInForm = () => {
         />
         <div className="buttons-container">
           <Button buttonType="inverted" type="submit">Sign In</Button>
-          <Button  buttonType="google" onClick={SignInWithGoogle}>Google Sign In</Button>
+          <Button type="button"  buttonType="google" onClick={SignInWithGoogle}>Google Sign In</Button>
         </div>
       
       </form>
