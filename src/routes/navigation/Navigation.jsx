@@ -14,19 +14,19 @@ const Navigation = () => {
             <img
               src={Logo}
               alt="Logo"
-              style={{ width: "70px", height: "70px", marginBottom:"50px" }}
+              style={{ width: "70px", height: "70px" }}
             />
           </div>
         </Link>
-        <div className="nav-link-container" style={{marginTop:"20px"}}>
-          <Link className="nav-link" to="/shop" style={{marginRight:"50px",fontSize:"25px"}}>
+        <div className="nav-link-container">
+          <Link className="nav-link" to="/shop" >
             Shope
           </Link>
-          <Link className="nav-link" to="/contact" style={{marginRight:"50px", fontSize:"25px"}}>
+          <Link className="nav-link" to="/contact" >
             Contact
           </Link>
-          <Link className="nav-link" to="/login" style={{marginRight:"50px", fontSize:"25px"}}>
-            Sign In
+          <Link className="nav-link" to="/auth">
+            SignIn
           </Link>
         </div>
       </div>

@@ -1,4 +1,5 @@
 {
   "sass.andStared": ["active", "focus", "hover", "nth-child"],
-  "cSpell.enableFiletypes": ["css.erb", "erb", "jsx-tags", "sass", "sql"]
+  "cSpell.enableFiletypes": ["css.erb", "erb", "jsx-tags", "sass", "sql"],
+  "cSpell.words": ["Firestore"]
 }
