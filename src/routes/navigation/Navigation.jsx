@@ -1,11 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { UserContext } from "../../contexts/User.context";
 import Logo from "../../Assets/images/4tune-logo.webp";
 import Cart from "../../Assets/images/cart.webp";
+
 
 import "./navigation.styles.scss"
 
 const Navigation = () => {
+  const {currentUser} = useContext(UserContext)
+  console.log(currentUser);
   return (
     <Fragment>
       <div className="navigation">
@@ -25,9 +29,9 @@ const Navigation = () => {
           <Link className="nav-link" to="/contact" >
             Contact
           </Link>
-          <Link className="nav-link" to="/auth">
+          {currentUser ? (<span className="nav-link">Sign Out</span>) : (<Link className="nav-link" to="/auth">
             SignIn
-          </Link>
+          </Link>)}
         </div>
       </div>
       <Outlet />

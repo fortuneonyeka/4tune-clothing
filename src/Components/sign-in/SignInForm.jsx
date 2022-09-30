@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import FormInput from "../form-inputs/Form-input";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword
+  signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/Firebase.utils";
-import "./sign-in-form-styles.scss"
+import "./sign-in-form-styles.scss";
 import Button from "../button/Button";
+import { UserContext } from "../../contexts/User.context";
 
 const defaultFormFields = {
   email: "",
@@ -18,7 +19,7 @@ const SignInForm = () => {
 
   const { email, password } = formFields;
 
-  const [ loading, setLoading] = useState(false)
+  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormField = () => {
     setFormFields(defaultFormFields);
@@ -26,24 +27,26 @@ const SignInForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
 
     try {
-     const response = await signInAuthUserWithEmailAndPassword(email, password)
-     console.log(response);
-     
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      setCurrentUser(user);
+
       resetFormField();
     } catch (error) {
-      switch(error.code){
+      switch (error.code) {
         case "auth/wrong-password":
           alert("Incorrect Password");
           break;
 
         case "auth/user-not-found":
-          alert("No user associated with this email")
+          alert("No user associated with this email");
           break;
-        default :
-        alert(error);
+        default:
+          alert(error);
       }
       // if (error.code === "auth/wrong-password") {
       //   alert("You entered wrong password")
@@ -53,20 +56,20 @@ const SignInForm = () => {
     }
   };
 
-  const SignInWithGoogle =  async () => {
-    const {user} = await signInWithGooglePopup()
-    await createUserDocumentFromAuth(user)
+  const SignInWithGoogle = async () => {
+    const { user } = await signInWithGooglePopup();
+    await createUserDocumentFromAuth(user);
+    setCurrentUser(user)
+  };
 
-  }
-
-  const diableButton = !email || password.length < 6
+  const diableButton = !email || password.length < 6;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
   };
-  
+
   return (
     <div className="sign-up-container">
       <h2>Already have an account?</h2>
@@ -74,35 +77,35 @@ const SignInForm = () => {
 
       <form onSubmit={handleSubmit}>
         <FormInput
-         label="Email"
-         inputOptions={{
-          required:true,
-          type:"email",
-          onChange:handleChange,
-          name:"email",
-          value:email,
-         }}
-          
+          label="Email"
+          inputOptions={{
+            required: true,
+            type: "email",
+            onChange: handleChange,
+            name: "email",
+            value: email,
+          }}
         />
 
-       
         <FormInput
-         label="Password"
-         inputOptions={{
-          required: true,
-          type:"password",
-          minLength:6,
-          onChange:handleChange,
-          name:"password",
-          value:password,
-         }}
-          
+          label="Password"
+          inputOptions={{
+            required: true,
+            type: "password",
+            minLength: 6,
+            onChange: handleChange,
+            name: "password",
+            value: password,
+          }}
         />
         <div className="buttons-container">
-          <Button disabled={diableButton} buttonType="inverted" type="submit">Sign In</Button>
-          <Button type="button"  buttonType="google" onClick={SignInWithGoogle}>Google Sign In</Button>
+          <Button disabled={diableButton} buttonType="inverted" type="submit">
+            Sign In
+          </Button>
+          <Button type="button" buttonType="google" onClick={SignInWithGoogle}>
+            Google Sign In
+          </Button>
         </div>
-      
       </form>
     </div>
   );
