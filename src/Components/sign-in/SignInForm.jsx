@@ -18,6 +18,8 @@ const SignInForm = () => {
 
   const { email, password } = formFields;
 
+  const [ loading, setLoading] = useState(false)
+
   const resetFormField = () => {
     setFormFields(defaultFormFields);
   };
@@ -29,6 +31,7 @@ const SignInForm = () => {
     try {
      const response = await signInAuthUserWithEmailAndPassword(email, password)
      console.log(response);
+     
       resetFormField();
     } catch (error) {
       switch(error.code){
@@ -56,11 +59,14 @@ const SignInForm = () => {
 
   }
 
+  const diableButton = !email || password.length < 6
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
   };
+  
   return (
     <div className="sign-up-container">
       <h2>Already have an account?</h2>
@@ -93,7 +99,7 @@ const SignInForm = () => {
           
         />
         <div className="buttons-container">
-          <Button buttonType="inverted" type="submit">Sign In</Button>
+          <Button disabled={diableButton} buttonType="inverted" type="submit">Sign In</Button>
           <Button type="button"  buttonType="google" onClick={SignInWithGoogle}>Google Sign In</Button>
         </div>
       
