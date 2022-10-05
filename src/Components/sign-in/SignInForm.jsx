@@ -33,7 +33,7 @@ const SignInForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
+      // setCurrentUser(user);
 
       resetFormField();
     } catch (error) {
@@ -59,7 +59,7 @@ const SignInForm = () => {
   const SignInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
     await createUserDocumentFromAuth(user);
-    setCurrentUser(user)
+    // setCurrentUser(user)
   };
 
   const diableButton = !email || password.length < 6;
